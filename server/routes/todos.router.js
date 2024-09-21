@@ -47,6 +47,24 @@ router.get('/', (req, res) => {
   
   });
   
+  router.put('/:id', (req, res) => {
+    console.log('req.params', req.params.id);
+    //let body = req.body
+    let id = req.params.id
+    let {isComplete } = req.body;
+    let sqlText = `
+    UPDATE "todos"
+    SET "isComplete" = $1
+    WHERE "id" = $2
+    `
+    let params = [isComplete,id];
+  pool.query(sqlText, params).then( result => {
+      res.sendStatus(204);
+  }).catch(error => {
+      console.log(error)
+      res.sendStatus(500);
+  });
+  });
 
 
 
