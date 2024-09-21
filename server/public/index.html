@@ -12,16 +12,19 @@
   <header>
     <h1>SQL TO-DO List</h1>
   </header>
-  <input id="toDoText"  data-testid="toDoTextInput" type="text" placeholder=""to-do text">
-  <button data-testid="submitButton">Submit</button>
-  <button data-testid="deleteButton">Delete</button>
+  <input id="toDoText"  data-testid="toDoTextInput" type="text" placeholder="to-do text">
+  <input id = "isComplete" data-testid="toDoTextInput" placeholder="isComplete">
+  <button data-testid="submitButton" onClick = "saveList(event)">Submit</button>
+  
   <section data-testid="toDoItem">
     <h2>All Items</h2>
-      <table data-testid="toDoTextInput">
-        <thead data-testid="toDoTextInput">
-          <tr data-testid="toDoTextInput">
+      <table>
+        <thead>
+          <tr>
             <th>text</th>
             <th>isComplete</th>
+            <th>Delete</th>
+            
             
           </tr>
         </thead>
