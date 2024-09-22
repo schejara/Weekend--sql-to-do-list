@@ -6,17 +6,18 @@
   <link rel="stylesheet" href="style.css">
   <script src="./scripts/axios.js"></script>
   <script src="./scripts/client.js"></script>
+  
   <title>SQL TO-DO List</title>
 </head>
-<body>
-  <header>
+<body class = "flex-container">
+  <header class = "gradient">
     <h1>SQL TO-DO List</h1>
   </header>
   <input id="toDoText"  data-testid="toDoTextInput" type="text" placeholder="to-do text">
   
   <button data-testid="submitButton" onClick = "saveList(event)">Submit</button>
   
-  <section>
+  <section >
     <h2>All Items</h2>
       <table>
         <thead>

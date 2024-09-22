@@ -21,6 +21,11 @@ function saveList(event){
  let todos = {};
 todos.text = document.getElementById('toDoText').value
 addItem(todos);
+
+// added code to clear the to-do-text after adding it
+document.getElementById('toDoText').value = "";
+//
+
 }
 
 function addItem(itemToAdd) {
@@ -42,7 +47,7 @@ function addItem(itemToAdd) {
 
 function renderToDom(todos){
     let addItem = document.getElementById("addItem");
-    addItem.innerHTML = '';
+    addItem.innerHTML = ' ';
     for(let property of todos){
 
         const completedClass = property.isComplete ? 'completed' : ''; // Determine the class
@@ -54,8 +59,9 @@ function renderToDom(todos){
             <td >${property.text}</td>        
             <td>${property.isComplete ? 'true' : 'false'}</td>
 
-            <td>
-            <button class = "delete" data-testid="deleteButton" onClick="deleteItem(${property.id})">Delete</button>
+            <td>            
+            <button class = "delete" data-testid="deleteButton" 
+            onClick= "confirm('Are you sure you want to delete this?') ? deleteItem(${property.id}) : null ">Delete</button>
             </td>
 
             <td >
@@ -83,13 +89,16 @@ function complete(todosId) {
 function deleteItem(todosId) {
     console.log('Deleting item with ID:', todosId);
     axios.delete(`/todos/${todosId}`).then((response) => {
-      getToDoList()
+      getToDoList()     
      
     }).catch((error) => {
         console.log('Error', error);
         alert('Something went wrong');
     });
   }
+
+    
+    
 
 
 

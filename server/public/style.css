@@ -1,15 +1,35 @@
-body{
-    background-color: rgb(181, 211, 238);
-    font-family:'Times New Roman', Times, serif ;
+
+
+@media (min-width: 119px) and (max-width: 480px) {
+    body {
+        background-color: rgb(180, 247, 217);
+    }
 }
 
+
+@media (min-width: 501px) and (max-width: 680px) {
+    body {
+        background-color: rgb(179, 208, 239);
+    }
+}
+
+@media (min-width: 681px) {
+    body {
+    
+        background-color: rgba(183, 229, 231, 0.865);
+    }
+}
+
+
+
+
+ 
 .completed {
-    background-color: rgb(49, 155, 49); /* Change background color */
+    background-color: rgb(46, 110, 46); /* Change background color */
     color: white; /* Change text color */
 }
 
 .delete{
     background-color: rgb(227, 26, 26);
 }
-
 
