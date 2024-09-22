@@ -13,10 +13,10 @@
     <h1>SQL TO-DO List</h1>
   </header>
   <input id="toDoText"  data-testid="toDoTextInput" type="text" placeholder="to-do text">
-  <input id = "isComplete" data-testid="toDoTextInput" placeholder="isComplete">
+  
   <button data-testid="submitButton" onClick = "saveList(event)">Submit</button>
   
-  <section data-testid="toDoItem">
+  <section>
     <h2>All Items</h2>
       <table>
         <thead>
@@ -29,7 +29,7 @@
             
           </tr>
         </thead>
-        <tbody id="addItem" data-testid="toDoTextInput">
+        <tbody id="addItem">
         </tbody>
       </table>
 

@@ -20,9 +20,7 @@ function saveList(event){
     event.preventDefault();
  let todos = {};
 todos.text = document.getElementById('toDoText').value
-todos.isComplete = document.getElementById('isComplete').value
 addItem(todos);
-
 }
 
 function addItem(itemToAdd) {
@@ -47,31 +45,34 @@ function renderToDom(todos){
     addItem.innerHTML = '';
     for(let property of todos){
 
+        const completedClass = property.isComplete ? 'completed' : ''; // Determine the class
+
+        
         addItem.innerHTML += 
         `
-        <tr data-testid="toDoItem" >
-        <td >${property.text}</td>        
-        <td>${property.isComplete ? 'true' : 'false'}</td>
-        
-        <td>
-        <button data-testid="deleteButton" onClick="deleteItem(${property.id})">Delete</button>
+        <tr data-testid="toDoItem" class="${completedClass}">  
+            <td >${property.text}</td>        
+            <td>${property.isComplete ? 'true' : 'false'}</td>
 
-        </td>
-        <td>
-          ${property.isComplete 
+            <td>
+            <button class = "delete" data-testid="deleteButton" onClick="deleteItem(${property.id})">Delete</button>
+            </td>
+
+            <td >
+             ${property.isComplete 
             ? '' 
-            : `<button data-testid="completeButton" onClick="complete(${property.id})">Complete</button>`}
-           
-        </td>
+            : `<button class = "completed" data-testid="completeButton" onClick="complete(${property.id})">Complete</button>`}
+             </td>
         </tr>
         `      
     };
    
 }
 function complete(todosId) { 
-    let data = {isComplete: false};
+    let data = {isComplete: true};
     axios.put(`/todos/${todosId}`, data).then(response => {
       getToDoList()
+      
     }).catch((error) => {
         console.log('Error', error);
         alert('Something went wrong');

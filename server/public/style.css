@@ -3,6 +3,13 @@ body{
     font-family:'Times New Roman', Times, serif ;
 }
 
-.complete{
-    background-color: rgb(223, 198, 247);
+.completed {
+    background-color: rgb(49, 155, 49); /* Change background color */
+    color: white; /* Change text color */
 }
+
+.delete{
+    background-color: rgb(227, 26, 26);
+}
+
+

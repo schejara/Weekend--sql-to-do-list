@@ -18,9 +18,9 @@ router.get('/', (req, res) => {
     let newItem = req.body;
     console.log(`Adding item`,newItem);
   
-    let queryText = `INSERT INTO "todos" ("text","isComplete")
-                     VALUES ($1, $2);`;
-    pool.query(queryText, [newItem.text,newItem.isComplete])
+    let queryText = `INSERT INTO "todos" ("text")
+                     VALUES ($1);`;
+    pool.query(queryText, [newItem.text])
       .then(result => {
         res.sendStatus(201);
       })
