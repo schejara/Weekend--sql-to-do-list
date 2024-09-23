@@ -51,13 +51,14 @@ router.get('/', (req, res) => {
     console.log('req.params', req.params.id);
     //let body = req.body
     let id = req.params.id
-    let {isComplete } = req.body;
+    let {isComplete,completedAt } = req.body;
     let sqlText = `
     UPDATE "todos"
-    SET "isComplete" = $1
-    WHERE "id" = $2
+    SET "isComplete" = $1,
+         "completedAt" = $2
+    WHERE "id" = $3
     `
-    let params = [isComplete,id];
+    let params = [isComplete,completedAt,id];
   pool.query(sqlText, params).then( result => {
       res.sendStatus(204);
   }).catch(error => {

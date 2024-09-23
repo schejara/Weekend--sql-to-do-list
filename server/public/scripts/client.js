@@ -59,6 +59,7 @@ function renderToDom(todos){
             <td >${property.text}</td>        
             <td>${property.isComplete ? 'true' : 'false'}</td>
 
+
             <td>            
             <button class = "delete" data-testid="deleteButton" 
             onClick= "confirm('Are you sure you want to delete this?') ? deleteItem(${property.id}) : null ">Delete</button>
@@ -69,13 +70,21 @@ function renderToDom(todos){
             ? '' 
             : `<button class = "completed" data-testid="completeButton" onClick="complete(${property.id})">Complete</button>`}
              </td>
+             <td>
+             ${property.completedAt}
+             </td>
         </tr>
         `      
     };
    
 }
 function complete(todosId) { 
-    let data = {isComplete: true};
+  //const currentDay = new Date().toISOString();
+  const currentDay = new Date().toLocaleDateString();
+    let data = {isComplete: true, completedAt :currentDay};
+    console.log('data ',data)
+    
+    
     axios.put(`/todos/${todosId}`, data).then(response => {
       getToDoList()
       
