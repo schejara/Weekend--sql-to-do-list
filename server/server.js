@@ -3,7 +3,9 @@ const app = express();
 
 const todos = require('./routes/todos.router.js');
 
-let PORT = process.env.PORT || 5001;
+
+require('dotenv').config()
+
 
 // Do not modify this!
 if (process.env.NODE_ENV == 'test') {
@@ -15,6 +17,7 @@ app.use(express.json());
 
 app.use('/todos', todos);
 
-app.listen(PORT, () => {
-  console.log('server running on: ', PORT);
-});
+const PORT = process.env.PORT || 5001;
+app.listen( PORT, () => {
+  console.log( 'Listening on port', PORT );
+})

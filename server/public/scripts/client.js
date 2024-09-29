@@ -62,13 +62,15 @@ function renderToDom(todos){
 
             <td>            
             <button class = "delete" data-testid="deleteButton" 
-            onClick= "confirm('Are you sure you want to delete this?') ? deleteItem(${property.id}) : null ">Delete</button>
+            onClick= "confirm('Are you sure you want to delete this?') 
+            ? deleteItem(${property.id}) : null ">Delete</button>
             </td>
 
             <td >
              ${property.isComplete 
             ? '' 
-            : `<button class = "completed" data-testid="completeButton" onClick="complete(${property.id})">Complete</button>`}
+            : `<button class = "completed" data-testid="completeButton" 
+            onClick="complete(${property.id})">Complete</button>`}
              </td>
              <td>
              ${property.completedAt}

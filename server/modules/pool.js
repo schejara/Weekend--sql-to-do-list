@@ -1,16 +1,41 @@
-const pg = require('pg')
+// Connect to DB
+const pg = require('pg');
 
-let databaseName = 'weekend-to-do-app'
+let pool;
+// ! Need to require dotenv if you want to use environment variable to use cloud DB on locally running app.
+// require('dotenv').config()
 
-if (process.env.NODE_ENV === 'test') {
-  databaseName = 'prime_testing'
+// * If there is an existing DATABASE_URL, then use it...
+if (process.env.DATABASE_URL) {
+     console.log("DATABASE_URL EXISTS!")
+    // Use render database.
+    pool = new pg.Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    })
+} else {
+    console.log("DATABASE_URL NOT EXISTS!, ", process.env.DATABASE_URL)
+    pool = new pg.Pool({
+        database : 'weekend-to-do-app', // DB NAME not table!
+        host: 'localhost',
+        port: 5432,
+        idleTimeoutMillis: 30000
+    })
+
 }
 
-const pool = new pg.Pool({
-    host: 'localhost',
-    port: 5432,
-    database: databaseName,
-    allowExitOnIdle: true 
-})
 
-module.exports = pool
+/// ================
+
+pool.on('connect', () => {
+    console.log('DB CONNECTED');
+});
+
+pool.on('error', (err) => {
+    console.log('ERROR CONNECTING');
+    console.log(err);
+});
+
+module.exports = pool;
